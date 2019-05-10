@@ -14,6 +14,7 @@ namespace ProjectTwitter.Map.Option
         {
             ToTable("dbo.Tweets");
             Property(x => x.TweetContent).HasMaxLength(140).IsOptional();
+            Property(x => x.PublishDate).IsOptional();
             Property(x => x.ImagePath).IsOptional();
 
             Property(x => x.UserImage).IsOptional();

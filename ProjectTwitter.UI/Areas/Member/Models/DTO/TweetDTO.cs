@@ -1,14 +1,14 @@
-﻿using ProjectTwitter.Core.Entity;
+﻿using ProjectTwitter.Model.Option;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace ProjectTwitter.Model.Option
+namespace ProjectTwitter.UI.Areas.Member.Models.DTO
 {
-    public class Tweet:CoreEntity
+    public class TweetDTO
     {
+        public Guid ID { get; set; }
         public string TweetContent { get; set; }
         public DateTime PublishDate { get; set; }
 
@@ -20,8 +20,5 @@ namespace ProjectTwitter.Model.Option
 
         public Guid AppUserID { get; set; }
         public virtual AppUser AppUser { get; set; }
-
-        public virtual List<Comment> Comments { get; set; }
-        public virtual List<Like> Likes { get; set; }
     }
 }

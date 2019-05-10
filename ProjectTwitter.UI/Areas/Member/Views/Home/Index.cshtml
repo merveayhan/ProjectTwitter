@@ -1,6 +1,7 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Member/Views/Shared/MemberLayoutPage.cshtml";
 }
 
 <section class="content">
@@ -63,12 +64,12 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a aria-expanded="true" href="#activity" data-toggle="tab">Activity</a></li>
-                    <li><a aria-expanded="false" href="#timeline" data-toggle="tab">Timeline</a></li>
-                    <li><a aria-expanded="false" href="#settings" data-toggle="tab">Settings</a></li>
+                    <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+                    <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+                    <li><a href="#settings" data-toggle="tab">Settings</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="activity">
+                    <div class="active tab-pane" id="activity">
                         <!-- Post -->
                         <div class="post">
                             <div class="user-block">
@@ -328,3 +329,5 @@
     </div>
     <!-- /.row -->
 </section>
+
+

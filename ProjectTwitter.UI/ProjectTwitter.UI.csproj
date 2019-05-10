@@ -99,12 +99,17 @@
     <Content Include="Content\Css\bootstrap.min.css" />
     <Content Include="Content\Css\font-awesome.min.css" />
     <Content Include="Content\Css\ionicons.min.css" />
+    <Content Include="Content\Css\_all-skins.min.css" />
     <Content Include="Content\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Fonts\ionicons.svg" />
+    <Content Include="Content\Scripts\adminlte.min.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
+    <Content Include="Content\Scripts\demo.js" />
+    <Content Include="Content\Scripts\fastclick.js" />
     <Content Include="Content\Scripts\icheck.min.js" />
     <Content Include="Content\Scripts\jquery.min.js" />
+    <Content Include="Content\Scripts\jquery.slimscroll.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -117,6 +122,10 @@
     <Compile Include="Areas\Member\Controllers\TweetController.cs" />
     <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
     <Compile Include="Areas\Member\Models\DTO\AppUserDTO.cs" />
+    <Compile Include="Areas\Member\Models\DTO\TweetDTO.cs" />
+    <Compile Include="Areas\Member\Models\VM\AddTweetVM.cs" />
+    <Compile Include="Areas\Member\Models\VM\TweetDetailVM.cs" />
+    <Compile Include="Areas\Member\Models\VM\UpdateTweetVM.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -141,6 +150,8 @@
     <Content Include="Content\Fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\Fonts\FontAwesome.otf" />
     <Content Include="Areas\Member\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Member\Views\Shared\MemberLayoutPage.cshtml" />
+    <Content Include="Areas\Member\Views\Tweet\Add.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
@@ -152,11 +163,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Member\Models\VM\" />
     <Folder Include="Areas\Member\Views\Comment\" />
     <Folder Include="Areas\Member\Views\Like\" />
-    <Folder Include="Areas\Member\Views\Shared\" />
-    <Folder Include="Areas\Member\Views\Tweet\" />
     <Folder Include="Content\Image\" />
     <Folder Include="Views\Login\" />
   </ItemGroup>
