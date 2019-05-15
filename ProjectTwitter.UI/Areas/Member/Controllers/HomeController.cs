@@ -39,5 +39,10 @@ namespace ProjectTwitter.UI.Areas.Member.Controllers
             }
             return View(model);
         }
+        public ActionResult Delete(Guid id)
+        {
+            _commentService.Remove(id);
+            return Redirect("/Member/Home/Index");
+        }
     }
 }

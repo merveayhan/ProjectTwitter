@@ -60,5 +60,11 @@ namespace ProjectTwitter.UI.Areas.Member.Controllers
                 LikeCount = _likeService.GetDefault(x => x.TweetID == tweetID && (x.Status == Core.Enum.Status.Active || x.Status == Core.Enum.Status.Updated)).Count(),
             }, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult Delete(Guid id)
+        {
+            _commentService.Remove(id);
+            return Redirect("/Member/Home/Index");
+        }
     }
 }

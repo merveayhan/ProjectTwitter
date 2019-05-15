@@ -82,8 +82,9 @@ namespace ProjectTwitter.UI.Areas.Member.Controllers
                 //CommentCount = _commentService.GetDefault(x => x.TweetID == tweetID && (x.Status == Core.Enum.Status.Active || x.Status == Core.Enum.Status.Updated)).Count(),
                 //LikeCount = _likeService.GetDefault(x => x.TweetID == tweetID && (x.Status == Core.Enum.Status.Active || x.Status == Core.Enum.Status.Updated)).Count(),
             }, JsonRequestBehavior.AllowGet);
-
+            
         }
+       
 
     }
 }
