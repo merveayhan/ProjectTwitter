@@ -59,18 +59,7 @@ namespace ProjectTwitter.UI.Areas.Member.Controllers
 
             return Redirect("/Member/Home/Index");
 
-            //bool isAdded = false;
-            //try
-            //{
-            //    _tweetService.Add(data);
-            //    isAdded = true;
-            //}
-            //catch (Exception)
-            //{
-            //    isAdded = false;
-            //}
-
-            //return Json(isAdded,JsonRequestBehavior.AllowGet);
+            
             
         }
         public ActionResult TweetList()

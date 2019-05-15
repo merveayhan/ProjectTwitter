@@ -32,7 +32,7 @@ namespace ProjectTwitter.UI.Areas.Member.Controllers
                 like.AppUserID = appuserID;
                 _likeService.Add(like);
 
-                //Kullanıcıya gönderilecek mesaj oluşturulur.
+                
 
                 jr.Likes = _likeService.GetDefault(x => x.TweetID == id).Count();
                 jr.userMessage = "likes it";

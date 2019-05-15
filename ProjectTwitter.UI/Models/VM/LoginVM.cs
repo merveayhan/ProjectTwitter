@@ -7,7 +7,7 @@ using System.Web;
 namespace ProjectTwitter.UI.Models.VM
 {
     public class LoginVM
-    {
+    { //gerekli olan
         [Required(ErrorMessage = "Username Error!")]
         public string UserName { get; set; }
 
