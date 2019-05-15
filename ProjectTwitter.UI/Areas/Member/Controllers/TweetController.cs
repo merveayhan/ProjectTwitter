@@ -14,76 +14,24 @@ namespace ProjectTwitter.UI.Areas.Member.Controllers
 {
     public class TweetController : Controller
     {
-       
-        
+        CommentService _commentService;
         AppUserService _appUserService;
+        LikeService _likeService;
         TweetService _tweetService;
-
         public TweetController()
         {
-           
+            _commentService = new CommentService();
             _appUserService = new AppUserService();
+            _likeService = new LikeService();
             _tweetService = new TweetService();
         }
-        public ActionResult Add()
-        {
-            AddTweetVM model = new AddTweetVM()
-            {
-                AppUsers = _appUserService.GetActive(),
-              
-            };
-            return View(model);
-        }
+        //public ActionResult AddTweet()
+        //{
+        //    List<AppUser> model = _appUserService.GetActive();
+        //    return View(model);
+        //}
         [HttpPost]
-        public ActionResult Add(Tweet data)
-        {
-            //List<string> UploadedImagePaths = new List<string>();
-
-            //UploadedImagePaths = ImageUploader.UploadSingleImage(ImageUploader.OriginalProfileImagePath, Image, 1);
-
-            //data.ImagePath = UploadedImagePaths[0];
-
-            //if (data.ImagePath == "0" || data.ImagePath == "1" || data.ImagePath == "2")
-            //{
-            //    data.ImagePath = ImageUploader.DefaultProfileImagePath;
-            //    data.ImagePath = ImageUploader.DefaultXSmallProfileImage;
-            //    data.ImagePath = ImageUploader.DefaulCruptedProfileImage;
-            //}
-            //else
-            //{
-            //    data.ImagePath = UploadedImagePaths[1];
-            //    data.ImagePath = UploadedImagePaths[2];
-            //}
-
-            //AppUser user = _appUserService.GetByDefault(x => x.UserName == User.Identity.Name);
-            //data.AppUserID = user.ID;
-            //data.PublishDate = DateTime.Now;
-
-            _tweetService.Add(data);
-            return Redirect("/Member/Home/Index");
-        }
-        public ActionResult List()
-        {
-            Guid userID = _appUserService.FindByUserName(User.Identity.Name).ID;
-            List<Tweet> model = _tweetService.GetDefault(x => x.AppUserID == userID && (x.Status == Core.Enum.Status.Active || x.Status == Core.Enum.Status.Updated));
-            return View(model);
-        }
-        public ActionResult Update(Guid id)
-        {
-            Tweet tweet = _tweetService.GetByID(id);
-            UpdateTweetVM model = new UpdateTweetVM();
-            model.Tweet.ID = tweet.ID;
-            model.Tweet.TweetContent = tweet.TweetContent;          
-            model.Tweet.PublishDate = DateTime.Now;
-            model.Tweet.ImagePath = tweet.ImagePath;
-            List<AppUser> appusermodel = _appUserService.GetActive();
-            model.AppUsers = appusermodel;
-            
-            return View(model);
-
-        }
-        [HttpPost]
-        public ActionResult Update(TweetDTO data, HttpPostedFileBase Image)
+        public ActionResult AddTweet(Tweet data, HttpPostedFileBase Image)
         {
             List<string> UploadedImagePaths = new List<string>();
 
@@ -91,43 +39,62 @@ namespace ProjectTwitter.UI.Areas.Member.Controllers
 
             data.ImagePath = UploadedImagePaths[0];
 
-            Tweet update = _tweetService.GetByID(data.ID);
-
             if (data.ImagePath == "0" || data.ImagePath == "1" || data.ImagePath == "2")
             {
-
-                if (update.ImagePath == null || update.ImagePath == ImageUploader.DefaultProfileImagePath)
-                {
-                    update.ImagePath = ImageUploader.DefaultProfileImagePath;
-                    update.ImagePath = ImageUploader.DefaultXSmallProfileImage;
-                    update.ImagePath = ImageUploader.DefaulCruptedProfileImage;
-                }
-                else
-                {
-                    update.ImagePath = update.ImagePath;
-                }
-
+                data.ImagePath = ImageUploader.DefaultProfileImagePath;
+                data.ImagePath = ImageUploader.DefaultXSmallProfileImage;
+                data.ImagePath = ImageUploader.DefaulCruptedProfileImage;
             }
             else
             {
-                update.ImagePath = UploadedImagePaths[0];
-                update.ImagePath = UploadedImagePaths[1];
-                update.ImagePath = UploadedImagePaths[2];
+                data.ImagePath = UploadedImagePaths[1];
+                data.ImagePath = UploadedImagePaths[2];
             }
 
-            Tweet tweet = _tweetService.GetByID(data.ID);
-            tweet.TweetContent = data.TweetContent;
-            tweet.PublishDate = data.PublishDate;
+            AppUser user = _appUserService.GetByDefault(x => x.UserName == User.Identity.Name);
+            data.AppUserID = user.ID;
            
-            tweet.AppUserID = data.AppUserID;
-            tweet.Status = Core.Enum.Status.Updated;
-            _tweetService.Update(tweet);
+            data.CreatedDate = DateTime.Now;
+            _tweetService.Add(data);
+
             return Redirect("/Member/Home/Index");
+
+            //bool isAdded = false;
+            //try
+            //{
+            //    _tweetService.Add(data);
+            //    isAdded = true;
+            //}
+            //catch (Exception)
+            //{
+            //    isAdded = false;
+            //}
+
+            //return Json(isAdded,JsonRequestBehavior.AllowGet);
+            
         }
-        public ActionResult Delete(Guid id)
+        public ActionResult TweetList()
         {
-            _tweetService.Remove(id);
-            return Redirect("/Member/Home/Index");
+
+            //List<Tweet> model = _tweetService.GetActive();
+            //return View(model);
+
+            Tweet tweet = _tweetService.GetDefault(x => x.Status == Core.Enum.Status.Active).FirstOrDefault();
+
+            return Json(new
+            {
+                AppUserImagePath = tweet.AppUser.UserImage,
+                FirstName = tweet.AppUser.FirstName,
+                LastName = tweet.AppUser.LastName,
+                CreatedDate = tweet.CreatedDate.ToString(),
+                TweetContent = tweet.TweetContent,
+                TweetCount = _tweetService.GetDefault(x => x.Status == Core.Enum.Status.Active || x.Status == Core.Enum.Status.Updated).Count()
+
+                //CommentCount = _commentService.GetDefault(x => x.TweetID == tweetID && (x.Status == Core.Enum.Status.Active || x.Status == Core.Enum.Status.Updated)).Count(),
+                //LikeCount = _likeService.GetDefault(x => x.TweetID == tweetID && (x.Status == Core.Enum.Status.Active || x.Status == Core.Enum.Status.Updated)).Count(),
+            }, JsonRequestBehavior.AllowGet);
+
         }
+
     }
 }

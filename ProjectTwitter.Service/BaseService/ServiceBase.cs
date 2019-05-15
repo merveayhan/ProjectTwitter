@@ -13,7 +13,7 @@ namespace ProjectTwitter.Service.BaseService
 {
     public class ServiceBase<T> : ICoreService<T> where T : CoreEntity
     {
-      
+
         private static ProjectContext _context;
 
         public ProjectContext context
@@ -29,72 +29,63 @@ namespace ProjectTwitter.Service.BaseService
             }
             set { _context = value; }
         }
-
         public int Save()
         {
             return context.SaveChanges();
         }
-
-        public void Add(List<T> items)
-        {
-            context.Set<T>().AddRange(items);
-            Save();
-        }
-
         public void Add(T item)
         {
             context.Set<T>().Add(item);
             Save();
         }
+        public void Add(List<T> items)
+        {
+            context.Set<T>().AddRange(items);
+        }
 
         public bool Any(Expression<Func<T, bool>> exp) => context.Set<T>().Any(exp);
+        public T GetById(Guid id)
+        {
+            return context.Set<T>().Find(id);
+        }
 
         public List<T> GetActive()
         {
             return context.Set<T>().Where(x => x.Status == Core.Enum.Status.Active || x.Status == Core.Enum.Status.Updated).ToList();
         }
-
         public List<T> GetAll()
         {
             return context.Set<T>().ToList();
-        }
-
-        public T GetByDefault(Expression<Func<T, bool>> exp)
-        {
-            return context.Set<T>().Where(exp).FirstOrDefault();
-        }
-
-        public T GetByID(Guid id)
-        {
-            return context.Set<T>().Find(id);
         }
 
         public List<T> GetDefault(Expression<Func<T, bool>> exp)
         {
             return context.Set<T>().Where(exp).ToList();
         }
+        public T GetByDefault(Expression<Func<T, bool>> exp)
+        {
+            return context.Set<T>().Where(exp).FirstOrDefault();
+        }
 
         public void Update(T item)
         {
-            T updated = GetByID(item.ID);
-            DbEntityEntry entry = context.Entry(updated);
+            T update = GetById(item.ID);
+            DbEntityEntry entry = context.Entry(update);
             entry.CurrentValues.SetValues(item);
             Save();
         }
 
         public void Remove(Guid id)
         {
-            T item = GetByID(id);
+            T item = GetById(id);
             item.Status = Core.Enum.Status.Deleted;
             Update(item);
         }
-
         public void Remove(T item)
         {
             item.Status = Core.Enum.Status.Deleted;
             Update(item);
         }
-
         public void RemoveAll(Expression<Func<T, bool>> exp)
         {
             foreach (var item in GetDefault(exp))
@@ -104,9 +95,9 @@ namespace ProjectTwitter.Service.BaseService
             }
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> exp)
+        public T GetByID(Guid id)
         {
-            return context.Set<T>().Where(exp).FirstOrDefault();
+            throw new NotImplementedException();
         }
     }
 }

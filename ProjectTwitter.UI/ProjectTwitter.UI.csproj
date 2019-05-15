@@ -99,10 +99,12 @@
     <Content Include="Content\Css\bootstrap.min.css" />
     <Content Include="Content\Css\font-awesome.min.css" />
     <Content Include="Content\Css\ionicons.min.css" />
+    <Content Include="Content\Css\style.css" />
     <Content Include="Content\Css\_all-skins.min.css" />
     <Content Include="Content\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Fonts\ionicons.svg" />
+    <Content Include="Content\Image\userlogo.jpg" />
     <Content Include="Content\Scripts\adminlte.min.js" />
     <Content Include="Content\Scripts\bootstrap.min.js" />
     <Content Include="Content\Scripts\demo.js" />
@@ -110,33 +112,38 @@
     <Content Include="Content\Scripts\icheck.min.js" />
     <Content Include="Content\Scripts\jquery.min.js" />
     <Content Include="Content\Scripts\jquery.slimscroll.min.js" />
+    <Content Include="Content\Scripts\script.js" />
+    <Content Include="Content\Uploads\UserImages\CruptedImages\userlogo.jpg" />
+    <Content Include="Content\Uploads\UserImages\OriginalImages\userlogo.jpg" />
+    <Content Include="Content\Uploads\UserImages\XSmallImages\userlogo.jpg" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Member\Controllers\AppUserController.cs" />
     <Compile Include="Areas\Member\Controllers\CommentController.cs" />
     <Compile Include="Areas\Member\Controllers\HomeController.cs" />
     <Compile Include="Areas\Member\Controllers\LikeController.cs" />
     <Compile Include="Areas\Member\Controllers\TweetController.cs" />
+    <Compile Include="Areas\Member\Controllers\UserProfileController.cs" />
     <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
     <Compile Include="Areas\Member\Models\DTO\AppUserDTO.cs" />
-    <Compile Include="Areas\Member\Models\DTO\TweetDTO.cs" />
-    <Compile Include="Areas\Member\Models\VM\AddTweetVM.cs" />
+    <Compile Include="Areas\Member\Models\VM\JsonLikeVM.cs" />
     <Compile Include="Areas\Member\Models\VM\TweetDetailVM.cs" />
-    <Compile Include="Areas\Member\Models\VM\UpdateTweetVM.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\VM\LoginVM.cs" />
+    <Compile Include="Models\VM\SignUpVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="Areas\Member\Views\web.config" />
-    <Content Include="Areas\Member\Views\AppUser\Add.cshtml" />
     <Content Include="Content\Fonts\ionicons.eot" />
     <Content Include="Content\Fonts\ionicons.ttf" />
     <Content Include="Content\Fonts\ionicons.woff" />
@@ -151,9 +158,11 @@
     <Content Include="Content\Fonts\FontAwesome.otf" />
     <Content Include="Areas\Member\Views\Home\Index.cshtml" />
     <Content Include="Areas\Member\Views\Shared\MemberLayoutPage.cshtml" />
-    <Content Include="Areas\Member\Views\Tweet\Add.cshtml" />
+    <Content Include="Areas\Member\Views\UserProfile\UserProfileShow.cshtml" />
+    <Content Include="Areas\Member\Views\UserProfile\Update.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\SignUp\Add.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -165,7 +174,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Member\Views\Comment\" />
     <Folder Include="Areas\Member\Views\Like\" />
-    <Folder Include="Content\Image\" />
+    <Folder Include="Areas\Member\Views\Tweet\" />
     <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>

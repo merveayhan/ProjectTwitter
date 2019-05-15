@@ -8,10 +8,10 @@ namespace ProjectTwitter.UI.Models.VM
 {
     public class LoginVM
     {
-        [Required(ErrorMessage = "Kulanıcı Adı Hatası!")]
+        [Required(ErrorMessage = "Username Error!")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Şifre Hatası!")]
+        [Required(ErrorMessage = "Password Error!")]
         public string Password { get; set; }
     }
 }

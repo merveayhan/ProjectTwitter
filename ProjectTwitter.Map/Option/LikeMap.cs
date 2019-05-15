@@ -13,7 +13,7 @@ namespace ProjectTwitter.Map.Option
         public LikeMap()
         {
             ToTable("dbo.Likes");
-            Property(x => x.LikeNumber).IsOptional();
+            //Property(x => x.LikeNumber).IsOptional();
 
             HasRequired(x => x.AppUser)
                .WithMany(x => x.Likes)

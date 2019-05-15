@@ -57,7 +57,14 @@ namespace ProjectTwitter.DAL.Context
                     entity.CreatedDate = dateTime;
                     entity.CreatedIP = GetIp;
                 }
-              
+                else if (item.State == EntityState.Modified)
+                {
+                    entity.ModifiedUserName = identity;
+                    entity.ModifiedComputerName = computerName;
+                    entity.ModifiedDate = dateTime;
+                    entity.ModifiedIP = GetIp;
+                }
+
             }
             return base.SaveChanges();
         }

@@ -13,16 +13,16 @@ namespace ProjectTwitter.Core.Service
         void Add(List<T> items);
 
         void Update(T item);
-        void Remove(T item);
 
+        void Remove(T item);
         void Remove(Guid id);
         void RemoveAll(Expression<Func<T, bool>> exp);
 
-        T GetByID(Guid id);
+        T GetById(Guid id);
         T GetByDefault(Expression<Func<T, bool>> exp);
 
-        List<T> GetActive();
         List<T> GetDefault(Expression<Func<T, bool>> exp);
+        List<T> GetActive();
         List<T> GetAll();
 
         bool Any(Expression<Func<T, bool>> exp);

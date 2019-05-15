@@ -39,7 +39,7 @@
             <nav class="navbar navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="../../index2.html"><b>MY</b>TWITTER</a>
+                        <a class="navbar-brand" href="/Member/Home/Index"><b>MY</b>TWITTER</a>
                         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-collapse">
                             <i class="fa fa-bars"></i>
                         </button>
@@ -50,15 +50,15 @@
                             @*<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
                             <li><a href="#">Link</a></li>*@
                             <li class="dropdown">
-                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">MENU <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
+                                    <li><a href="/Member/Tweet/Add">Tweet Add</a></li>
+                                    <li><a href="#">Profile Edit</a></li>
+                                    @*<li><a href="#">Something else here</a></li>
                                     <li class="divider"></li>
                                     <li><a href="#">Separated link</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#">One more separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>*@
                                 </ul>
                             </li>
                         </ul>
@@ -89,7 +89,7 @@
                                                 <a href="#">
                                                     <div class="pull-left">
                                                         <!-- User Image -->
-                                                        <img class="img-circle" alt="User Image" src="../../dist/img/user2-160x160.jpg">
+                                                        <img src="@Session["ImagePath"]" class="img-circle" alt="User Image" >
                                                     </div>
                                                     <!-- Message title and timestamp -->
                                                     <h4>
@@ -174,17 +174,16 @@
                                 <!-- Menu Toggle Button -->
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img class="user-image" alt="User Image" src="../../dist/img/user2-160x160.jpg">
+                                    <img src="@Session["ImagePath"]" class="user-image" alt="User Image" >
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">Alexander Pierce</span>
+                                    <span class="hidden-xs">@Session["FullName"]</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img class="img-circle" alt="User Image" src="../../dist/img/user2-160x160.jpg">
+                                        <img src="@Session["ImagePath"]" class="img-circle" alt="User Image" >
                                         <p>
-                                            Alexander Pierce - Web Developer
-                                            <small>Member since Nov. 2012</small>
+                                           @Session["Bio"]
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
@@ -205,10 +204,10 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a class="btn btn-default btn-flat" href="#">Profile</a>
+                                            <a class="btn btn-default btn-flat" href="/Member/UserProfile/UserProfileShow">Profile</a>
                                         </div>
                                         <div class="pull-right">
-                                            <a class="btn btn-default btn-flat" href="#">Sign out</a>
+                                            <a class="btn btn-default btn-flat" href="/Account/LogOut">Sign out</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -222,24 +221,7 @@
         </header>
         <!-- Full Width Column -->
         <div class="content-wrapper" style="min-height: 319px;">
-            <div class="container">
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    @*<h1>
-                        Top Navigation
-                        <small>Example 2.0</small>
-                    </h1>*@
-                    @*<ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="#">Layout</a></li>
-                        <li class="active">Top Navigation</li>
-                    </ol>*@
-                </section>
-                <!-- Main content -->
-                @RenderBody()
-                <!-- /.content -->
-            </div>
-            <!-- /.container -->
+            @RenderBody()
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
