@@ -35,7 +35,7 @@ namespace ProjectTwitter.UI.Areas.Member.Controllers
                 
 
                 jr.Likes = _likeService.GetDefault(x => x.TweetID == id).Count();
-                jr.userMessage = "likes it";
+                jr.userMessage = "like you";
                 jr.isSuccess = true;
                 jr.Likes = _likeService.GetDefault(x => x.TweetID == id && (x.Status == Core.Enum.Status.Active || x.Status == Core.Enum.Status.Updated)).Count();
                 jr.Comments = _commentService.GetDefault(x => x.TweetID == id && (x.Status == Core.Enum.Status.Active || x.Status == Core.Enum.Status.Updated)).Count();
@@ -44,7 +44,7 @@ namespace ProjectTwitter.UI.Areas.Member.Controllers
             else
             {
                 jr.isSuccess = false;
-                jr.userMessage = "You've liked this article before!";
+                jr.userMessage = "Error!";
 
                 return Json(jr, JsonRequestBehavior.AllowGet);
             }
