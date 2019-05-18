@@ -10,5 +10,6 @@ namespace ProjectTwitter.Service.Option
 {
     public class TweetService : ServiceBase<Tweet>
     {
+
     }
 }

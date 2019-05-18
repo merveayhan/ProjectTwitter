@@ -27,7 +27,7 @@ namespace ProjectTwitter.UI.Controllers
                 {
                     string cookie = user.UserName;
                     FormsAuthentication.SetAuthCookie(cookie, true);
-                   // Session["ID"] = user.ID;
+                    //Session["ID"] = user.ID;
                     Session["FullName"] = user.FirstName + ' ' + user.LastName;
                     Session["ImagePath"] = user.UserImage;
                     Session["ProfileImage"] = user.XSmallUserImage;
@@ -64,7 +64,7 @@ namespace ProjectTwitter.UI.Controllers
                         Session["ImagePath"] = user.UserImage;
                         Session["ProfileImage"] = user.XSmallUserImage;
                         Session["Bio"] = user.Bio;
-                        // return Redirect("/Member/Home/Index");
+                      
                         return Redirect("/Member/Home/Index");
                     }
                     else

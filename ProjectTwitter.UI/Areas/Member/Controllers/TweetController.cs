@@ -30,6 +30,11 @@ namespace ProjectTwitter.UI.Areas.Member.Controllers
         //    List<AppUser> model = _appUserService.GetActive();
         //    return View(model);
         //}
+        public ActionResult AddTweet()
+        {
+            return View(_appUserService.GetActive().OrderByDescending(x => x.CreatedDate).ToList());
+        }
+
         [HttpPost]
         public ActionResult AddTweet(Tweet data, HttpPostedFileBase Image)
         {
@@ -84,7 +89,12 @@ namespace ProjectTwitter.UI.Areas.Member.Controllers
             }, JsonRequestBehavior.AllowGet);
             
         }
-       
+        public ActionResult Delete(Guid id)
+        {
+            _tweetService.Remove(id);
+            return Redirect("/Member/Home/Index");
+        }
+
 
     }
 }
